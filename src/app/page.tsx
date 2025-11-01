@@ -1,3 +1,4 @@
+import Link from "next/link";
 import Hero from "../components/Hero";
 import PostCard from "../components/PostCard";
 import TagList from "../components/TagList";
@@ -48,7 +49,9 @@ export default function Home() {
           </h2>
           <div className="mt-6 grid grid-cols-1 gap-6 sm:grid-cols-2 md:grid-cols-3">
             {DUMMY_POSTS.map((p) => (
-              <PostCard key={p.slug} post={p} />
+              <Link key={p.slug} href={`/posts/${p.slug}`}>
+                <PostCard post={p} />
+              </Link>
             ))}
           </div>
         </section>
