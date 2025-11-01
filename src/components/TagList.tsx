@@ -1,3 +1,5 @@
+import Link from 'next/link';
+
 export default function TagList({ tags }: { tags: string[] }) {
   return (
     <div className="mt-8">
@@ -6,13 +8,13 @@ export default function TagList({ tags }: { tags: string[] }) {
       </h4>
       <div className="mt-3 flex flex-wrap gap-2">
         {tags.map((t) => (
-          <a
+          <Link
             key={t}
             href={`/tags/${encodeURIComponent(t)}`}
             className="rounded-full bg-sky-50 px-3 py-1 text-sm text-sky-700 hover:bg-sky-100"
           >
             {t}
-          </a>
+          </Link>
         ))}
       </div>
     </div>
