@@ -11,7 +11,7 @@ AWSを利用したデプロイとインフラ構築の学習を目的とする�
 | 分類 | 技術 | 用途 |
 |------|------|------|
 | フロントエンド | Next.js 14 | ブログ表示、SSG構成 |
-| バックエンド | Hono.js | APIサーバ（拡張予定） |
+| バックエンド | Hono.js | APIサーバ（拡張予定） |RE
 | スタイリング | Tailwind CSS / shadcn/ui | UI構築 |
 | 記事管理 | gray-matter / remark | Markdown解析 |
 | デプロイ | Vercel → AWS Amplify | 初期デプロイ・移行学習 |
