@@ -10,7 +10,6 @@ const config: Config = {
   darkMode: "class",
   theme: {
     extend: {
-      typography: require("./typography.config"),
       borderRadius: {
         lg: "var(--radius)",
         md: "calc(var(--radius) - 2px)",
