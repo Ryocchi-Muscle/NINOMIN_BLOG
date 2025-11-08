@@ -32,7 +32,7 @@ export function sortByDate<T extends { date: string }>(posts: T[]): T[] {
 // 記事が保存されているディレクトリのパス
 const postsDirectory = path.join(process.cwd(), "content/posts");
 
-// 全記事のメタデータを取得する関数（メインページ用）
+// 全記事のメタデータを取得する関数(メインページ用)
 export function getAllPosts(): PostMeta[] {
   // postsディレクトリが存在しない場合は空配列を返す
   if (!fs.existsSync(postsDirectory)) {
@@ -84,7 +84,7 @@ export function getAllTags(): string[] {
   return Array.from(tagsSet).sort();
 }
 
-// slugから特定の記事を本文込みで取得する関数（詳細ページ用）
+// slugから特定の記事を本文込みで取得する関数(詳細ページ用)
 export function getPostBySlug(slug: string) {
   const fullPath = path.join(postsDirectory, `${slug}.mdx`);
 
