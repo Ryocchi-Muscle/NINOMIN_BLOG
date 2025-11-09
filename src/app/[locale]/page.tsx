@@ -1,8 +1,9 @@
-import { getTranslations } from "next-intl/server";
 import { locales } from "@/i18n";
-import Hero from "@/components/Hero";
-import PostCard from "@/components/PostCard";
-import TagList from "@/components/TagList";
+import HeroSection from "@/components/HeroSection";
+import LatestArticles from "@/components/LatestArticles";
+import FeaturedArticles from "@/components/FeaturedArticles";
+import TagFilter from "@/components/TagFilter";
+import ProfileCard from "@/components/ProfileCard";
 import Footer from "@/components/Footer";
 import { getAllPosts, getAllTags } from "@/lib/posts";
 
@@ -16,32 +17,28 @@ export default async function Home({
   params: Promise<{ locale: string }>;
 }) {
   const { locale } = await params;
-  const t = await getTranslations();
   const posts = getAllPosts();
   const tags = getAllTags();
 
   return (
-    <main className="min-h-screen bg-slate-50 dark:bg-slate-900 text-slate-900 dark:text-slate-100">
-      <Hero />
+    <main className="min-h-screen bg-white dark:bg-slate-900 text-slate-900 dark:text-slate-100">
+      {/* Hero Section */}
+      <HeroSection />
 
-      <div className="mx-auto max-w-4xl px-6 py-12">
-        <section>
-          <h2 className="text-2xl font-semibold text-slate-800 dark:text-slate-100">
-            {t("blog.latestPosts")}
-          </h2>
-          <div className="mt-6 grid grid-cols-1 gap-6 sm:grid-cols-2 md:grid-cols-3">
-            {posts.map((p) => (
-              <PostCard key={p.slug} post={p} locale={locale} />
-            ))}
-          </div>
-        </section>
+      {/* Featured Articles */}
+      <FeaturedArticles posts={posts} locale={locale} />
 
-        <section className="mt-10">
-          <TagList tags={tags} />
-        </section>
+      {/* Tag Filter */}
+      <TagFilter tags={tags} />
 
-        <Footer />
-      </div>
+      {/* Latest Articles */}
+      <LatestArticles posts={posts} locale={locale} />
+
+      {/* Profile Card */}
+      <ProfileCard locale={locale} />
+
+      {/* Footer */}
+      <Footer />
     </main>
   );
 }
