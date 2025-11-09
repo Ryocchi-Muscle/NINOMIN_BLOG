@@ -1,5 +1,4 @@
 import type { Metadata } from "next";
-import "./globals.css";
 import Script from "next/script";
 
 export const metadata: Metadata = {
@@ -13,9 +12,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="ja">
+    <html suppressHydrationWarning>
       <head>
-        {/* Google Analytics */}
         <Script
           src="https://www.googletagmanager.com/gtag/js?id=G-K1Z9NBHTDT"
           strategy="afterInteractive"
