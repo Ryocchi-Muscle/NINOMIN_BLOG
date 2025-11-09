@@ -1,14 +1,24 @@
 import Link from "next/link";
 import type { PostMeta } from "../types/post";
 
-export default function PostCard({ post }: { post: PostMeta }) {
+interface PostCardProps {
+  post: PostMeta;
+  locale: string;
+}
+
+export default function PostCard({ post, locale }: PostCardProps) {
   return (
-    <Link href={`/posts/${post.slug}`} aria-label={`Read more about ${post.title}`}>
+    <Link
+      href={`/${locale}/posts/${post.slug}`}
+      aria-label={`Read more about ${post.title}`}
+    >
       <article className="rounded-lg border border-slate-100 p-6 shadow-sm hover:shadow-md transition-shadow bg-white dark:bg-slate-800">
         <h3 className="text-xl font-semibold text-slate-800 dark:text-slate-100">
           {post.title}
         </h3>
-        <p className="mt-2 text-slate-600 dark:text-slate-300">{post.excerpt}</p>
+        <p className="mt-2 text-slate-600 dark:text-slate-300">
+          {post.excerpt}
+        </p>
         <div className="mt-4 flex items-center justify-between text-sm text-slate-500">
           <time>{post.date}</time>
           <div className="flex gap-2">

@@ -1,19 +1,24 @@
 import { notFound } from "next/navigation";
 import { MDXRemote } from "next-mdx-remote/rsc";
-import { getAllPosts, getPostBySlug, formatDate } from "@/lib/utils";
+import { getAllPosts, getPostBySlug, formatDate } from "@/lib/posts";
+import { locales } from "@/i18n";
 import Link from "next/link";
 
 export async function generateStaticParams() {
   const posts = getAllPosts();
-  return posts.map((post) => ({
-    slug: post.slug,
-  }));
+
+  return locales.flatMap((locale) =>
+    posts.map((post) => ({
+      locale,
+      slug: post.slug,
+    }))
+  );
 }
 
 export async function generateMetadata({
   params,
 }: {
-  params: Promise<{ slug: string }>;
+  params: Promise<{ slug: string; locale: string }>;
 }) {
   const { slug } = await params;
   const post = getPostBySlug(slug);
@@ -33,9 +38,9 @@ export async function generateMetadata({
 export default async function PostPage({
   params,
 }: {
-  params: Promise<{ slug: string }>;
+  params: Promise<{ slug: string; locale: string }>;
 }) {
-  const { slug } = await params;
+  const { slug, locale } = await params;
   const post = getPostBySlug(slug);
 
   if (!post || !post.published) {
@@ -48,7 +53,7 @@ export default async function PostPage({
         {/* ヘッダー */}
         <header className="mb-8">
           <Link
-            href="/"
+            href={`/${locale}`}
             className="text-sm text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-slate-100"
           >
             ← ホームに戻る
