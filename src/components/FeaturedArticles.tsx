@@ -10,13 +10,9 @@ import { Star, ArrowRight } from "lucide-react";
 
 interface FeaturedArticlesProps {
   posts: PostMeta[];
-  locale: string;
 }
 
-export default function FeaturedArticles({
-  posts,
-  locale,
-}: FeaturedArticlesProps) {
+export default function FeaturedArticles({ posts }: FeaturedArticlesProps) {
   // 最初の3記事をおすすめとして表示
   const featuredPosts = posts.slice(0, 3);
 
@@ -73,7 +69,7 @@ export default function FeaturedArticles({
                     ))}
                   </div>
                   <Button variant="ghost" className="w-full group" asChild>
-                    <Link href={`/${locale}/posts/${post.slug}`}>
+                    <Link href={`/posts/${post.slug}`}>
                       続きを読む
                       <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
                     </Link>
