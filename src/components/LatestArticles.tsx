@@ -9,10 +9,9 @@ import { Calendar } from "lucide-react";
 
 interface LatestArticlesProps {
   posts: PostMeta[];
-  locale: string;
 }
 
-export default function LatestArticles({ posts, locale }: LatestArticlesProps) {
+export default function LatestArticles({ posts }: LatestArticlesProps) {
   const container = {
     hidden: { opacity: 0 },
     show: {
@@ -48,7 +47,7 @@ export default function LatestArticles({ posts, locale }: LatestArticlesProps) {
       >
         {posts.map((post) => (
           <motion.div key={post.slug} variants={item}>
-            <Link href={`/${locale}/posts/${post.slug}`}>
+            <Link href={`/posts/${post.slug}`}>
               <Card className="h-full transition-all duration-300 hover:shadow-lg hover:-translate-y-1 cursor-pointer border-slate-200 dark:border-slate-700">
                 <CardHeader>
                   <CardTitle className="text-xl mb-3 text-slate-900 dark:text-slate-50 line-clamp-2">

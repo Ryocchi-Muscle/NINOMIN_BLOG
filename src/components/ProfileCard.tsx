@@ -7,11 +7,7 @@ import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import Link from "next/link";
 import { ArrowRight, User } from "lucide-react";
 
-interface ProfileCardProps {
-  locale: string;
-}
-
-export default function ProfileCard({ locale }: ProfileCardProps) {
+export default function ProfileCard() {
   return (
     <section className="px-6 py-16 max-w-4xl mx-auto">
       <motion.div
@@ -57,7 +53,7 @@ export default function ProfileCard({ locale }: ProfileCardProps) {
             </p>
             <div className="pt-4">
               <Button className="w-full group" size="lg" asChild>
-                <Link href={`/${locale}/about`}>
+                <Link href="/about">
                   詳しいプロフィールを見る
                   <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
                 </Link>

@@ -1,5 +1,7 @@
 import type { Metadata } from "next";
 import Script from "next/script";
+import Header from "@/components/Header";
+import "./globals.css";
 
 export const metadata: Metadata = {
   title: "Personal Blog – Ryo Ninomiya",
@@ -12,7 +14,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html suppressHydrationWarning>
+    <html lang="ja" suppressHydrationWarning>
       <head>
         <Script
           src="https://www.googletagmanager.com/gtag/js?id=G-K1Z9NBHTDT"
@@ -27,7 +29,10 @@ export default function RootLayout({
           `}
         </Script>
       </head>
-      <body>{children}</body>
+      <body>
+        <Header />
+        {children}
+      </body>
     </html>
   );
 }
