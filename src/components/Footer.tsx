@@ -95,7 +95,7 @@ export default function Footer() {
               asChild
             >
               <a
-                href="https://www.wantedly.com/id/ryo_ninomiya"
+                href="https://www.wantedly.com/id/ryo_ninomiya_c"
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="Wantedly"
