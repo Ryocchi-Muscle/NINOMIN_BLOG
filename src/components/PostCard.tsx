@@ -3,13 +3,12 @@ import type { PostMeta } from "../types/post";
 
 interface PostCardProps {
   post: PostMeta;
-  locale: string;
 }
 
-export default function PostCard({ post, locale }: PostCardProps) {
+export default function PostCard({ post }: PostCardProps) {
   return (
     <Link
-      href={`/${locale}/posts/${post.slug}`}
+      href={`/posts/${post.slug}`}
       aria-label={`Read more about ${post.title}`}
     >
       <article className="rounded-lg border border-slate-100 p-6 shadow-sm hover:shadow-md transition-shadow bg-white dark:bg-slate-800">
