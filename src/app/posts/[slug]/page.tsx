@@ -1,0 +1,169 @@
+import { getPostBySlug, getAllPosts, formatDate } from "@/lib/posts";
+import { notFound } from "next/navigation";
+import { Badge } from "@/components/ui/badge";
+import { Calendar, Clock } from "lucide-react";
+import ReactMarkdown from "react-markdown";
+import remarkGfm from "remark-gfm";
+import { Metadata } from "next";
+
+type Props = {
+  params: Promise<{ slug: string }>;
+};
+
+// 静的生成のためのパスを生成
+export async function generateStaticParams() {
+  const posts = getAllPosts();
+  return posts.map((post) => ({
+    slug: post.slug,
+  }));
+}
+
+// メタデータの生成
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
+  const { slug } = await params;
+  const post = getPostBySlug(slug);
+
+  if (!post) {
+    return {
+      title: "記事が見つかりません",
+    };
+  }
+
+  return {
+    title: `${post.title} | NINOMIN BLOG`,
+    description: post.excerpt,
+  };
+}
+
+export default async function PostPage({ params }: Props) {
+  const { slug } = await params;
+  const post = getPostBySlug(slug);
+
+  if (!post) {
+    notFound();
+  }
+
+  return (
+    <div className="min-h-screen bg-gradient-to-b from-slate-50 to-white dark:from-slate-900 dark:to-slate-800">
+      <article className="max-w-4xl mx-auto px-4 py-12">
+        {/* ヘッダー */}
+        <header className="mb-8">
+          <h1 className="text-4xl md:text-5xl font-bold text-slate-900 dark:text-white mb-4">
+            {post.title}
+          </h1>
+
+          {/* メタ情報 */}
+          <div className="flex flex-wrap items-center gap-4 text-slate-600 dark:text-slate-400 mb-6">
+            <div className="flex items-center gap-2">
+              <Calendar className="w-4 h-4" />
+              <time dateTime={post.date}>{formatDate(post.date)}</time>
+            </div>
+            <div className="flex items-center gap-2">
+              <Clock className="w-4 h-4" />
+              <span>{post.readingTime}</span>
+            </div>
+          </div>
+
+          {/* タグ */}
+          <div className="flex flex-wrap gap-2">
+            {post.tags.map((tag) => (
+              <Badge key={tag} variant="secondary">
+                {tag}
+              </Badge>
+            ))}
+          </div>
+        </header>
+
+        {/* 本文 */}
+        <div className="prose prose-slate dark:prose-invert max-w-none">
+          <ReactMarkdown
+            remarkPlugins={[remarkGfm]}
+            components={{
+              h1: ({ ...props }) => (
+                <h1
+                  className="text-3xl font-bold mt-8 mb-4 text-slate-900 dark:text-white"
+                  {...props}
+                />
+              ),
+              h2: ({ ...props }) => (
+                <h2
+                  className="text-2xl font-bold mt-6 mb-3 text-slate-900 dark:text-white"
+                  {...props}
+                />
+              ),
+              h3: ({ ...props }) => (
+                <h3
+                  className="text-xl font-bold mt-5 mb-2 text-slate-900 dark:text-white"
+                  {...props}
+                />
+              ),
+              p: ({ ...props }) => (
+                <p
+                  className="mb-4 text-slate-700 dark:text-slate-300 leading-relaxed"
+                  {...props}
+                />
+              ),
+              ul: ({ ...props }) => (
+                <ul
+                  className="list-disc list-inside mb-4 space-y-2 text-slate-700 dark:text-slate-300"
+                  {...props}
+                />
+              ),
+              ol: ({ ...props }) => (
+                <ol
+                  className="list-decimal list-inside mb-4 space-y-2 text-slate-700 dark:text-slate-300"
+                  {...props}
+                />
+              ),
+              li: ({ ...props }) => <li className="ml-4" {...props} />,
+              code: ({ className, children, ...props }: any) => {
+                const match = /language-(\w+)/.exec(className || "");
+                return match ? (
+                  <code
+                    className={`block bg-slate-100 dark:bg-slate-800 rounded-lg p-4 overflow-x-auto text-sm ${className}`}
+                    {...props}
+                  >
+                    {children}
+                  </code>
+                ) : (
+                  <code
+                    className="bg-slate-100 dark:bg-slate-800 rounded px-1.5 py-0.5 text-sm"
+                    {...props}
+                  >
+                    {children}
+                  </code>
+                );
+              },
+              blockquote: ({ ...props }) => (
+                <blockquote
+                  className="border-l-4 border-slate-300 dark:border-slate-600 pl-4 italic my-4 text-slate-600 dark:text-slate-400"
+                  {...props}
+                />
+              ),
+              a: ({ ...props }) => (
+                <a
+                  className="text-blue-600 dark:text-blue-400 hover:underline"
+                  {...props}
+                />
+              ),
+              hr: ({ ...props }) => (
+                <hr
+                  className="my-8 border-slate-300 dark:border-slate-700"
+                  {...props}
+                />
+              ),
+              strong: ({ ...props }) => (
+                <strong
+                  className="font-bold text-slate-900 dark:text-white"
+                  {...props}
+                />
+              ),
+            }}
+          >
+            {post.content}
+          </ReactMarkdown>
+        </div>
+      </article>
+    </div>
+  );
+}
