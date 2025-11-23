@@ -29,6 +29,7 @@
     "rehype-slug": "^6.0.0",
     "remark": "^15.0.1",
     "remark-gfm": "^4.0.0",
+    "rss": "^1.2.2",
     "tailwind-merge": "^2.6.0",
     "tailwindcss-animate": "^1.0.7"
   },
@@ -37,6 +38,7 @@
     "@types/node": "^22.7.5",
     "@types/react": "^19.2.2",
     "@types/react-dom": "^19.2.2",
+    "@types/rss": "^0.0.32",
     "@typescript-eslint/eslint-plugin": "^8.8.1",
     "@typescript-eslint/parser": "^8.8.1",
     "autoprefixer": "^10.4.20",
