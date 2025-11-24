@@ -71,3 +71,6 @@ logs/
 next-env.d.ts
 .DS_Store
 .DS_Store
+
+# アーカイブはローカル管理外
+content/posts/archive/
