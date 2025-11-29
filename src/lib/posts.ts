@@ -55,7 +55,17 @@ export function getAllPosts(): PostMeta[] {
         tags: frontMatter.tags || [],
         readingTime: stats.text,
         published: frontMatter.published ?? true,
+        type: frontMatter.type ?? "internal",
+        externalUrl: frontMatter.externalUrl,
+        platform: frontMatter.platform,
       };
+
+      // バリデーション: externalUrl があるのに type が external でない場合は警告
+      if (frontMatter.externalUrl && frontMatter.type !== "external") {
+        console.warn(
+          `Warning: ${fileName} has externalUrl but type is not "external"`
+        );
+      }
 
       return post;
     })
@@ -63,6 +73,16 @@ export function getAllPosts(): PostMeta[] {
     .filter((post) => post.published);
 
   return sortByDate(allPosts);
+}
+
+// 内部記事のみを取得する関数
+export function getInternalPosts(): PostMeta[] {
+  return getAllPosts().filter((post) => post.type === "internal");
+}
+
+// 外部記事のみを取得する関数
+export function getExternalPosts(): PostMeta[] {
+  return getAllPosts().filter((post) => post.type === "external");
 }
 
 // 全記事から重複のないタグ一覧を取得する関数
@@ -101,6 +121,8 @@ export function getPostBySlug(slug: string) {
       tags: frontMatter.tags || [],
       readingTime: stats.text,
       published: frontMatter.published ?? true,
+      type: frontMatter.type ?? "internal",
+      externalUrl: frontMatter.externalUrl,
     };
   }
 
@@ -118,5 +140,7 @@ export function getPostBySlug(slug: string) {
     tags: frontMatter.tags || [],
     readingTime: stats.text,
     published: frontMatter.published ?? true,
+    type: frontMatter.type ?? "internal",
+    externalUrl: frontMatter.externalUrl,
   };
 }
