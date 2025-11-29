@@ -23,7 +23,7 @@ export function sortByDate<T extends { date: string }>(posts: T[]): T[] {
 }
 
 // 記事が保存されているディレクトリのパス
-const postsDirectory = path.join(process.cwd(), "content/posts");
+const postsDirectory = path.join(process.cwd(), "content/posts/active");
 
 // 全記事のメタデータを取得する関数(メインページ用)
 export function getAllPosts(): PostMeta[] {
