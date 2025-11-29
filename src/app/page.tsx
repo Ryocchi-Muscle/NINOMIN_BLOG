@@ -5,10 +5,11 @@ import ExternalArticles from "@/components/ExternalArticles";
 import TagFilter from "@/components/TagFilter";
 import ProfileCard from "@/components/ProfileCard";
 import Footer from "@/components/Footer";
-import { getAllPosts, getAllTags } from "@/lib/posts";
+import { getInternalPosts, getExternalPosts, getAllTags } from "@/lib/posts";
 
 export default function Home() {
-  const posts = getAllPosts();
+  const posts = getInternalPosts();
+  const externalPosts = getExternalPosts();
   const tags = getAllTags();
 
   return (
@@ -20,7 +21,7 @@ export default function Home() {
       <FeaturedArticles posts={posts} />
 
       {/* External Publications */}
-      <ExternalArticles />
+      <ExternalArticles articles={externalPosts} />
 
       {/* Tag Filter */}
       <TagFilter tags={tags} />

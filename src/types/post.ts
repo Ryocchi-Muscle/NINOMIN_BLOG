@@ -1,3 +1,5 @@
+export type PostType = "internal" | "external";
+
 export interface Post {
   slug: string;
   title: string;
@@ -7,6 +9,9 @@ export interface Post {
   tags: string[];
   readingTime: string;
   published: boolean;
+  type: PostType;
+  externalUrl?: string;
+  platform?: string;
 }
 
 export interface PostMeta {
@@ -17,6 +22,9 @@ export interface PostMeta {
   tags: string[];
   readingTime: string;
   published: boolean;
+  type: PostType;
+  externalUrl?: string;
+  platform?: string;
 }
 
 export interface FrontMatter {
@@ -25,4 +33,7 @@ export interface FrontMatter {
   excerpt: string;
   tags: string[];
   published?: boolean;
+  type?: PostType;
+  externalUrl?: string;
+  platform?: string;
 }

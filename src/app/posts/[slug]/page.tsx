@@ -1,5 +1,5 @@
 import { getPostBySlug, getAllPosts, formatDate } from "@/lib/posts";
-import { notFound } from "next/navigation";
+import { notFound, redirect } from "next/navigation";
 import { Badge } from "@/components/ui/badge";
 import { Calendar, Clock } from "lucide-react";
 import ReactMarkdown from "react-markdown";
@@ -41,6 +41,11 @@ export default async function PostPage({ params }: Props) {
 
   if (!post) {
     notFound();
+  }
+
+  // 外部記事の場合は外部URLにリダイレクト
+  if (post.type === "external" && post.externalUrl) {
+    redirect(post.externalUrl);
   }
 
   return (
