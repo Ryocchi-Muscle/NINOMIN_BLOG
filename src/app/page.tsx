@@ -1,6 +1,7 @@
 import HeroSection from "@/components/HeroSection";
 import LatestArticles from "@/components/LatestArticles";
 import FeaturedArticles from "@/components/FeaturedArticles";
+import ExternalArticles from "@/components/ExternalArticles";
 import TagFilter from "@/components/TagFilter";
 import ProfileCard from "@/components/ProfileCard";
 import Footer from "@/components/Footer";
@@ -17,6 +18,9 @@ export default function Home() {
 
       {/* Featured Articles */}
       <FeaturedArticles posts={posts} />
+
+      {/* External Publications */}
+      <ExternalArticles />
 
       {/* Tag Filter */}
       <TagFilter tags={tags} />
