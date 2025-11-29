@@ -5,6 +5,7 @@ import { Calendar, Clock } from "lucide-react";
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
 import { Metadata } from "next";
+import { CodeBlock } from "@/components/CodeBlock";
 
 type Props = {
   params: Promise<{ slug: string }>;
@@ -121,18 +122,23 @@ export default async function PostPage({ params }: Props) {
                 />
               ),
               li: ({ ...props }) => <li className="ml-4" {...props} />,
+              pre: ({ children }) => <>{children}</>,
               code: ({ className, children, ...props }: any) => {
                 const match = /language-(\w+)/.exec(className || "");
-                return match ? (
+                const isBlock =
+                  typeof children === "string" && children.includes("\n");
+
+                if (match || isBlock) {
+                  return (
+                    <CodeBlock className={className} language={match?.[1]}>
+                      {children}
+                    </CodeBlock>
+                  );
+                }
+
+                return (
                   <code
-                    className={`block bg-slate-100 dark:bg-slate-800 rounded-lg p-4 overflow-x-auto text-sm ${className}`}
-                    {...props}
-                  >
-                    {children}
-                  </code>
-                ) : (
-                  <code
-                    className="bg-slate-100 dark:bg-slate-800 rounded px-1.5 py-0.5 text-sm"
+                    className="bg-slate-100 dark:bg-slate-800 rounded px-1.5 py-0.5 text-sm text-slate-800 dark:text-slate-200"
                     {...props}
                   >
                     {children}
