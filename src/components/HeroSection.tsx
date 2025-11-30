@@ -11,12 +11,26 @@ export default function HeroSection() {
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.6 }}
-      className="flex flex-col items-center justify-center min-h-[60vh] px-6 py-20"
+      className="relative flex flex-col items-center justify-center min-h-[60vh] px-6 py-20 overflow-hidden"
     >
+      {/* 背景画像 */}
+      <div
+        className="absolute inset-0 z-0"
+        style={{
+          backgroundImage: "url('/images/hero-bg.jpg')",
+          backgroundSize: "cover",
+          backgroundPosition: "center",
+          backgroundRepeat: "no-repeat",
+        }}
+      />
+      {/* オーバーレイ（画像を薄くする） */}
+      <div className="absolute inset-0 z-0 bg-white/50 dark:bg-slate-900/60" />
+
       <motion.div
         initial={{ scale: 0.8, opacity: 0 }}
         animate={{ scale: 1, opacity: 1 }}
         transition={{ delay: 0.2, duration: 0.5 }}
+        className="relative z-10"
       >
         <Avatar className="h-40 w-40 mb-8 ring-4 ring-slate-200 dark:ring-slate-700">
           <AvatarImage
@@ -35,7 +49,7 @@ export default function HeroSection() {
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ delay: 0.4, duration: 0.6 }}
-        className="text-4xl md:text-5xl font-bold text-slate-900 dark:text-slate-50 mb-4 text-center"
+        className="relative z-10 text-4xl md:text-5xl font-bold text-slate-900 dark:text-slate-50 mb-4 text-center"
       >
         Ryo Ninomiya
       </motion.h1>
@@ -44,7 +58,7 @@ export default function HeroSection() {
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ delay: 0.6, duration: 0.6 }}
-        className="text-lg md:text-xl text-slate-600 dark:text-slate-400 mb-8 text-center max-w-2xl leading-relaxed"
+        className="relative z-10 text-lg md:text-xl text-slate-600 dark:text-slate-400 mb-8 text-center max-w-2xl leading-relaxed"
       >
         Python・TypeScriptを中心にWeb開発を行っています。
         日々の学びや技術的な発見をここで発信していきます。
@@ -55,7 +69,7 @@ export default function HeroSection() {
         initial={{ opacity: 0, y: 10 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 0.8, duration: 0.5 }}
-        className="flex gap-4 flex-wrap justify-center"
+        className="relative z-10 flex gap-4 flex-wrap justify-center"
       >
         <Button variant="outline" size="lg" className="gap-2" asChild>
           <a
