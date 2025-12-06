@@ -13,14 +13,16 @@ export default function HeroSection() {
       transition={{ duration: 0.6 }}
       className="relative flex flex-col items-center justify-center min-h-[60vh] px-6 py-20 overflow-hidden"
     >
-      {/* 背景画像 */}
+      {/* 背景画像 - モバイルでは縦長に対応 */}
       <div
         className="absolute inset-0 z-0"
         style={{
           backgroundImage: "url('/images/hero-bg.jpg')",
           backgroundSize: "cover",
-          backgroundPosition: "center",
+          backgroundPosition: "center center",
           backgroundRepeat: "no-repeat",
+          minHeight: "100%",
+          minWidth: "100%",
         }}
       />
       {/* オーバーレイ（画像を薄くする） */}
