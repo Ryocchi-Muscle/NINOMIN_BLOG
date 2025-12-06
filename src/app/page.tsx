@@ -1,33 +1,24 @@
 import HeroSection from "@/components/HeroSection";
-import LatestArticles from "@/components/LatestArticles";
-import FeaturedArticles from "@/components/FeaturedArticles";
 import ExternalArticles from "@/components/ExternalArticles";
-import TagFilter from "@/components/TagFilter";
+import PostFilter from "@/components/PostFilter";
 import ProfileCard from "@/components/ProfileCard";
 import Footer from "@/components/Footer";
-import { getInternalPosts, getExternalPosts, getAllTags } from "@/lib/posts";
+import { getExternalPosts, getInternalPosts } from "@/lib/posts";
 
 export default function Home() {
-  const posts = getInternalPosts();
   const externalPosts = getExternalPosts();
-  const tags = getAllTags();
+  const internalPosts = getInternalPosts();
 
   return (
     <main className="min-h-screen bg-white dark:bg-slate-900 text-slate-900 dark:text-slate-100">
       {/* Hero Section */}
       <HeroSection />
 
-      {/* Featured Articles */}
-      <FeaturedArticles posts={posts} />
+      {/* タブ切り替え記事一覧 */}
+      <PostFilter posts={internalPosts} />
 
       {/* External Publications */}
       <ExternalArticles articles={externalPosts} />
-
-      {/* Tag Filter */}
-      <TagFilter tags={tags} />
-
-      {/* Latest Articles */}
-      <LatestArticles posts={posts} />
 
       {/* Profile Card */}
       <ProfileCard />

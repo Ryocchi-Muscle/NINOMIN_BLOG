@@ -2,7 +2,7 @@ import fs from "fs";
 import path from "path";
 import matter from "gray-matter";
 import readingTime from "reading-time";
-import type { PostMeta, FrontMatter } from "@/types/post";
+import type { PostMeta, FrontMatter, PostCategory } from "@/types/post";
 
 // 日付を日本語形式にフォーマットする関数
 export function formatDate(date: string): string {
@@ -51,11 +51,13 @@ export function getAllPosts(): PostMeta[] {
         slug,
         title: frontMatter.title,
         date: frontMatter.date,
+        updatedAt: frontMatter.updatedAt,
         excerpt: frontMatter.excerpt,
         tags: frontMatter.tags || [],
         readingTime: stats.text,
         published: frontMatter.published ?? true,
         type: frontMatter.type ?? "internal",
+        category: frontMatter.category,
         externalUrl: frontMatter.externalUrl,
         platform: frontMatter.platform,
       };
@@ -83,6 +85,26 @@ export function getInternalPosts(): PostMeta[] {
 // 外部記事のみを取得する関数
 export function getExternalPosts(): PostMeta[] {
   return getAllPosts().filter((post) => post.type === "external");
+}
+
+// カテゴリ別に記事を取得する関数
+export function getPostsByCategory(category: PostCategory): PostMeta[] {
+  return getInternalPosts().filter((post) => post.category === category);
+}
+
+// 週次振り返り記事を取得
+export function getWeeklyPosts(): PostMeta[] {
+  return getPostsByCategory("weekly");
+}
+
+// 月次振り返り記事を取得
+export function getMonthlyPosts(): PostMeta[] {
+  return getPostsByCategory("monthly");
+}
+
+// 技術記事を取得
+export function getTechPosts(): PostMeta[] {
+  return getPostsByCategory("tech");
 }
 
 // 全記事から重複のないタグ一覧を取得する関数
