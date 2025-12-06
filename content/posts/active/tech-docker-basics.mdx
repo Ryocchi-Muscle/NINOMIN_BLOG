@@ -1,0 +1,133 @@
+---
+title: "Docker入門 - 開発環境をコンテナ化する"
+date: "2025-12-03"
+excerpt: "Dockerの基本概念と、開発環境をコンテナ化するメリットを解説"
+tags: ["Docker", "DevOps", "infrastructure", "tech"]
+category: "tech"
+published: true
+---
+
+# Docker 入門 - 開発環境をコンテナ化する
+
+## Docker とは
+
+Docker は、アプリケーションをコンテナという単位でパッケージ化し、どこでも同じ環境で実行できるようにするツール。
+
+---
+
+## なぜ Docker を使うのか
+
+### 1. 環境の統一
+
+「自分の PC では動くのに...」問題を解消。
+
+```bash
+# 開発者A: macOS
+# 開発者B: Windows
+# 本番: Linux
+
+# → Dockerなら全員同じ環境で動作
+```
+
+### 2. セットアップの簡素化
+
+新メンバーの環境構築が一瞬で完了。
+
+```bash
+# 従来: READMEを見ながら数時間かけてセットアップ
+# Docker: コマンド一発
+docker-compose up -d
+```
+
+---
+
+## 基本コマンド
+
+### イメージ操作
+
+```bash
+# イメージをダウンロード
+docker pull node:18
+
+# イメージ一覧
+docker images
+
+# イメージを削除
+docker rmi node:18
+```
+
+### コンテナ操作
+
+```bash
+# コンテナを起動
+docker run -d -p 3000:3000 --name myapp node:18
+
+# コンテナ一覧
+docker ps -a
+
+# コンテナを停止
+docker stop myapp
+
+# コンテナを削除
+docker rm myapp
+```
+
+---
+
+## Dockerfile の例
+
+```dockerfile
+# ベースイメージ
+FROM node:18-alpine
+
+# 作業ディレクトリ
+WORKDIR /app
+
+# 依存関係をインストール
+COPY package*.json ./
+RUN npm install
+
+# ソースコードをコピー
+COPY . .
+
+# ポートを公開
+EXPOSE 3000
+
+# アプリを起動
+CMD ["npm", "start"]
+```
+
+---
+
+## docker-compose.yml の例
+
+```yaml
+version: "3.8"
+services:
+  app:
+    build: .
+    ports:
+      - "3000:3000"
+    volumes:
+      - .:/app
+    environment:
+      - NODE_ENV=development
+
+  db:
+    image: postgres:15
+    environment:
+      POSTGRES_PASSWORD: password
+    volumes:
+      - db-data:/var/lib/postgresql/data
+
+volumes:
+  db-data:
+```
+
+---
+
+## まとめ
+
+- Docker で環境差異をなくせる
+- チーム開発の効率が大幅に向上
+- 本番環境との差異も最小化できる

@@ -4,6 +4,7 @@ import { getAllPosts } from "./posts";
 /**
  * RSSフィードのXMLを生成する関数
  * 全記事データを取得してRSS 2.0形式のXMLに変換する
+ * updatedAtが設定されている場合、guidに更新日を含めて再通知を可能にする
  */
 export function generateRssFeed() {
   const siteUrl = "https://ninominlog.com";
@@ -21,11 +22,17 @@ export function generateRssFeed() {
   const posts = getAllPosts();
 
   posts.forEach((post) => {
+    // updatedAtがある場合はguidに含めて、更新時に再通知されるようにする
+    const guid = post.updatedAt
+      ? `${siteUrl}/posts/${post.slug}#updated-${post.updatedAt}`
+      : `${siteUrl}/posts/${post.slug}`;
+
     feed.item({
-      title: post.title,
+      title: post.updatedAt ? `[更新] ${post.title}` : post.title,
       description: post.excerpt,
       url: `${siteUrl}/posts/${post.slug}`,
-      date: post.date,
+      guid: guid,
+      date: post.updatedAt || post.date,
       categories: post.tags,
     });
   });
