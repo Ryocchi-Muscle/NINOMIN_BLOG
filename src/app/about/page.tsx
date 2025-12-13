@@ -20,7 +20,7 @@ import Footer from "@/components/Footer";
 
 export default function AboutPage() {
   const skills = {
-    backend: ["Python", "Node.js", "Flask", "Express", "FastAPI"],
+    backend: ["Python", "Node.js", "Flask", "Express"],
     cloud: ["AWS", "Amplify", "Route 53", "CloudFront", "S3"],
     devops: ["Docker", "Git", "GitHub Actions", "CI/CD"],
     frontend: ["Next.js", "React", "TypeScript", "JavaScript", "Tailwind CSS"],
@@ -28,21 +28,34 @@ export default function AboutPage() {
 
   const timeline = [
     {
-      year: "2025",
-      title: "SRE / バックエンドエンジニアを目指す",
+      year: "2025/10",
+      title: "DevOpsエンジニアを目指す",
       description:
-        "インフラ自動化、CI/CD、システムの信頼性向上に注力。バックエンド開発とDevOpsの実践的なスキルを習得中",
+        "インフラ領域への興味が深まり、バックエンドを軸にしたDevOpsエンジニアとしてのキャリアを志向",
     },
     {
-      year: "2024",
-      title: "個人開発とインフラ学習",
-      description:
-        "Next.jsを使ったブログシステムの構築とAWS Amplifyへのデプロイ。クラウドインフラストラクチャの実践",
+      year: "2024/11",
+      title: "株式会社TOUCH TO GO 入社",
+      description: [
+        "無人決済システムのフルスタック開発（Python/TypeScript）に従事",
+        "Flask, Express, Vue.js, Electronを使用した管理アプリ・レジアプリの開発",
+        "コーディングチェックリスト導入によるチーム品質向上",
+        "決済端末APIの設計・実装を担当",
+      ],
     },
     {
-      year: "2023",
-      title: "Web開発の基礎学習",
-      description: "モダンなフロントエンド技術とバックエンド開発の学習開始",
+      year: "2022/4",
+      title: "独立系SIer 入社",
+      description: [
+        "金融系基幹システム（COBOL/汎用機）の保守・開発に従事",
+        "要件定義から統合テストまで担当",
+        "顧客レビューフローのデジタル化で工数50%削減を実現",
+      ],
+    },
+    {
+      year: "2022/3",
+      title: "大学卒業",
+      description: "心理学専攻で学士号取得",
     },
   ];
 
@@ -104,10 +117,6 @@ export default function AboutPage() {
                   <Briefcase className="h-4 w-4" />
                   <span>株式会社 TOUCH TO GO</span>
                 </div>
-                <div className="flex items-center gap-2">
-                  <Calendar className="h-4 w-4" />
-                  <span>2024年より個人開発</span>
-                </div>
               </div>
             </motion.div>
           </div>
@@ -129,27 +138,27 @@ export default function AboutPage() {
             </h2>
 
             <div className="space-y-6 text-slate-700 dark:text-slate-300 leading-relaxed">
+              <div className="inline-block px-4 py-2 bg-sky-100 dark:bg-sky-900/30 rounded-lg mb-2">
+                <span className="font-semibold text-sky-700 dark:text-sky-300">
+                  バックエンドからDevOps/インフラ領域へ挑戦中
+                </span>
+              </div>
+
               <p className="text-lg">
-                こんにちは、Ryo Ninomiyaです。
-                現在、SREおよびバックエンドエンジニアを志望し、
-                信頼性の高いシステム構築とインフラストラクチャの自動化について学んでいます。
+                WebエンジニアとしてPython/TypeScriptを用いたアプリケーション開発を行っています。
               </p>
 
               <p>
-                PythonやNode.jsを使ったバックエンド開発を中心に学習を進めており、
-                将来的にはシステムの可用性、スケーラビリティ、パフォーマンスを最適化する
-                SREとしてのキャリアを築くことを目標としています。
+                私のエンジニアとしての核は「泥臭いキャッチアップ力」と「仕組み化による課題解決」です。
+                SIer時代にはアナログな業務フローをデジタル化して工数を半減させ、
+                現職では品質課題に対してチェックリスト導入を推進するなど、
+                常に「チームのために動く」ことを意識してきました。
               </p>
 
               <p>
-                AWS Amplifyを使ったデプロイ、Route 53でのドメイン管理、
-                CloudFrontを使ったCDN配信など、クラウドインフラストラクチャの実践的な経験を積みながら、
-                DevOpsやCI/CDパイプラインの構築についても学びを深めています。
-              </p>
-
-              <p>
-                フロントエンド開発の知識も活かしながら、
-                ユーザーに安定したサービスを提供できるエンジニアを目指して日々成長中です。
+                今後はDevOpsエンジニアとして、バックエンド開発を軸にしつつインフラ領域へも活躍の幅を広げていきたいと考えています。
+                アプリケーションを作るだけでなく、それを支える「インフラ・セキュリティ基盤」までを一気通貫で構築できるエンジニアを目指し、
+                開発者（作る側）の視点を活かしながら、クラウドネイティブな技術を貪欲に吸収していきます。
               </p>
 
               <Card className="bg-slate-50 dark:bg-slate-800/50 border-slate-200 dark:border-slate-700">
@@ -250,8 +259,15 @@ export default function AboutPage() {
                   className="flex gap-6"
                 >
                   <div className="flex flex-col items-center">
-                    <div className="w-12 h-12 rounded-full bg-sky-600 text-white flex items-center justify-center font-bold shadow-lg">
-                      {item.year.slice(-2)}
+                    <div className="w-16 h-16 rounded-full bg-sky-600 text-white flex flex-col items-center justify-center font-bold shadow-lg">
+                      <span className="text-lg leading-none">
+                        {item.year.split("/")[0]}
+                      </span>
+                      <span className="text-xs leading-none mt-0.5">
+                        {item.year.includes("/")
+                          ? item.year.split("/")[1] + "月"
+                          : ""}
+                      </span>
                     </div>
                     {index < timeline.length - 1 && (
                       <div className="w-0.5 flex-1 bg-slate-200 dark:bg-slate-700 mt-2" />
@@ -261,9 +277,17 @@ export default function AboutPage() {
                     <h3 className="text-xl font-semibold text-slate-900 dark:text-slate-50 mb-2">
                       {item.title}
                     </h3>
-                    <p className="text-slate-600 dark:text-slate-400">
-                      {item.description}
-                    </p>
+                    {Array.isArray(item.description) ? (
+                      <ul className="text-slate-600 dark:text-slate-400 space-y-1 list-disc list-inside">
+                        {item.description.map((line, i) => (
+                          <li key={i}>{line}</li>
+                        ))}
+                      </ul>
+                    ) : (
+                      <p className="text-slate-600 dark:text-slate-400">
+                        {item.description}
+                      </p>
+                    )}
                   </div>
                 </motion.div>
               ))}
@@ -286,7 +310,7 @@ export default function AboutPage() {
               Get in Touch
             </h2>
             <p className="text-slate-600 dark:text-slate-400 mb-8 max-w-2xl mx-auto">
-              技術的な質問や協力のご提案など、お気軽にご連絡ください。
+              質問や協力のご提案など、お気軽にご連絡ください。
               SNSでもフォローお待ちしています！
             </p>
             <div className="flex flex-wrap gap-4 justify-center">
