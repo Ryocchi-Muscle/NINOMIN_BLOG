@@ -118,6 +118,22 @@ export default function Footer() {
             </Button>
           </div>
 
+          {/* サイトリンク */}
+          <div className="flex gap-6 text-sm">
+            <a
+              href="/about"
+              className="text-slate-600 hover:text-slate-900 dark:text-slate-400 dark:hover:text-slate-100 transition-colors"
+            >
+              About
+            </a>
+            <a
+              href="/resources"
+              className="text-slate-600 hover:text-slate-900 dark:text-slate-400 dark:hover:text-slate-100 transition-colors"
+            >
+              Resources
+            </a>
+          </div>
+
           {/* 著作権表記 */}
           <div className="text-center md:text-right">
             <p className="text-sm text-slate-600 dark:text-slate-400 flex items-center gap-1.5">

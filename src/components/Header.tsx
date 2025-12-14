@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { User, Video } from "lucide-react";
 
 export default function Header() {
   return (
@@ -12,33 +13,23 @@ export default function Header() {
           NINOMIN BLOG
         </Link>
 
-        {/* ナビゲーション - 各ページ実装後に有効化 */}
-        {/* <nav className="flex items-center gap-6">
-          <Link
-            href="/"
-            className="text-sm font-medium text-slate-700 transition-colors hover:text-slate-900 dark:text-slate-300 dark:hover:text-slate-100"
-          >
-            ホーム
-          </Link>
-          <Link
-            href="/blog"
-            className="text-sm font-medium text-slate-700 transition-colors hover:text-slate-900 dark:text-slate-300 dark:hover:text-slate-100"
-          >
-            ブログ
-          </Link>
+        {/* ナビゲーション */}
+        <nav className="flex items-center gap-1">
           <Link
             href="/about"
-            className="text-sm font-medium text-slate-700 transition-colors hover:text-slate-900 dark:text-slate-300 dark:hover:text-slate-100"
+            className="flex items-center gap-1.5 px-3 py-2 text-sm font-medium text-slate-700 rounded-md transition-colors hover:bg-slate-100 hover:text-slate-900 dark:text-slate-300 dark:hover:bg-slate-800 dark:hover:text-slate-100"
           >
+            <User className="h-4 w-4" />
             About
           </Link>
           <Link
-            href="/contact"
-            className="text-sm font-medium text-slate-700 transition-colors hover:text-slate-900 dark:text-slate-300 dark:hover:text-slate-100"
+            href="/resources"
+            className="flex items-center gap-1.5 px-3 py-2 text-sm font-medium text-slate-700 rounded-md transition-colors hover:bg-slate-100 hover:text-slate-900 dark:text-slate-300 dark:hover:bg-slate-800 dark:hover:text-slate-100"
           >
-            Contact
+            <Video className="h-4 w-4" />
+            Resources
           </Link>
-        </nav> */}
+        </nav>
       </div>
     </header>
   );
