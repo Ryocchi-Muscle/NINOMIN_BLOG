@@ -23,6 +23,7 @@ export async function generateStaticParams() {
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = await params;
   const post = getPostBySlug(slug);
+  const siteUrl = process.env.SITE_URL || "https://ninomin-blog.vercel.app";
 
   if (!post) {
     return {
@@ -30,9 +31,37 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     };
   }
 
+  const title = `${post.title} | NINOMIN BLOG`;
+  const url = `${siteUrl}/posts/${slug}`;
+  const ogImageUrl = `${siteUrl}/api/og?title=${encodeURIComponent(post.title)}&description=${encodeURIComponent(post.excerpt)}`;
+
   return {
-    title: `${post.title} | NINOMIN BLOG`,
+    title,
     description: post.excerpt,
+    openGraph: {
+      title,
+      description: post.excerpt,
+      url,
+      siteName: "NINOMIN BLOG",
+      locale: "ja_JP",
+      type: "article",
+      publishedTime: post.date,
+      images: [
+        {
+          url: ogImageUrl,
+          width: 1200,
+          height: 630,
+          alt: post.title,
+        },
+      ],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title,
+      description: post.excerpt,
+      creator: "@r_ninomin",
+      images: [ogImageUrl],
+    },
   };
 }
 
