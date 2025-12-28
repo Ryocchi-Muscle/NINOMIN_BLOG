@@ -78,8 +78,40 @@ export default async function PostPage({ params }: Props) {
     redirect(post.externalUrl);
   }
 
+  // 目次用にh2見出しを抽出
+  const headings = post.content.match(/^## .+$/gm) || [];
+  const tocItems = headings
+    .map((h) => h.replace(/^## /, ""))
+    .filter((h) => h !== "目次")
+    .map((text) => ({
+      text,
+      id: text
+        .toLowerCase()
+        .replace(/\s+/g, "-")
+        .replace(/[^\w\u3040-\u309f\u30a0-\u30ff\u4e00-\u9faf-]/g, ""),
+    }));
+
   return (
     <div className="min-h-screen bg-gradient-to-b from-slate-50 to-white dark:from-slate-900 dark:to-slate-800">
+      {/* 目次 - 右上固定 */}
+      {tocItems.length > 0 && (
+        <nav className="fixed top-20 right-4 z-50 bg-white/95 dark:bg-slate-800/95 backdrop-blur-sm rounded-lg shadow-lg p-4 max-w-[200px] text-sm hidden xl:block">
+          <div className="font-semibold text-slate-900 dark:text-white mb-3">目次</div>
+          <ul className="flex flex-col gap-2">
+            {tocItems.map((item) => (
+              <li key={item.id}>
+                <a
+                  href={`#${item.id}`}
+                  className="text-slate-600 dark:text-slate-400 hover:text-blue-600 dark:hover:text-blue-400 transition-colors block truncate"
+                >
+                  {item.text}
+                </a>
+              </li>
+            ))}
+          </ul>
+        </nav>
+      )}
+
       <article className="max-w-4xl mx-auto px-4 py-12">
         {/* ヘッダー */}
         <header className="mb-8">
@@ -120,12 +152,22 @@ export default async function PostPage({ params }: Props) {
                   {...props}
                 />
               ),
-              h2: ({ ...props }) => (
-                <h2
-                  className="text-2xl font-bold mt-6 mb-3 text-slate-900 dark:text-white"
-                  {...props}
-                />
-              ),
+              h2: ({ children, ...props }) => {
+                const text = String(children);
+                const id = text
+                  .toLowerCase()
+                  .replace(/\s+/g, "-")
+                  .replace(/[^\w\u3040-\u309f\u30a0-\u30ff\u4e00-\u9faf-]/g, "");
+                return (
+                  <h2
+                    id={id}
+                    className="text-2xl font-bold mt-6 mb-3 text-slate-900 dark:text-white scroll-mt-20"
+                    {...props}
+                  >
+                    {children}
+                  </h2>
+                );
+              },
               h3: ({ ...props }) => (
                 <h3
                   className="text-xl font-bold mt-5 mb-2 text-slate-900 dark:text-white"
