@@ -194,7 +194,11 @@ export default async function PostPage({ params }: Props) {
               ),
               li: ({ ...props }) => <li className="ml-4" {...props} />,
               pre: ({ children }) => <>{children}</>,
-              code: ({ className, children, ...props }: any) => {
+              code: ({
+                className,
+                children,
+                ...props
+              }: React.ComponentPropsWithoutRef<"code">) => {
                 const match = /language-(\w+)/.exec(className || "");
                 const isBlock =
                   typeof children === "string" && children.includes("\n");

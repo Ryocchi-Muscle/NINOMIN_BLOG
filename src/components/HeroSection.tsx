@@ -3,7 +3,6 @@
 import { motion } from "framer-motion";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
-import { BookOpen } from "lucide-react";
 
 export default function HeroSection() {
   return (
