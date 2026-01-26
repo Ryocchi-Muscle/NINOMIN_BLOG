@@ -104,10 +104,10 @@ jobs:
 
 ### 品質ゲート
 
-- ✅ **型安全性**: TypeScript strict mode
-- ✅ **コード品質**: ESLint 9.39 + Flat Config
-- ✅ **ビルド検証**: 本番ビルドの成功確認
-- ✅ **依存関係の固定**: pnpm frozen-lockfile
+- **型安全性**: TypeScript strict mode
+- **コード品質**: ESLint 9.39 + Flat Config
+- **ビルド検証**: 本番ビルドの成功確認
+- **依存関係の固定**: pnpm frozen-lockfile
 
 ---
 
@@ -163,19 +163,19 @@ main ← feature/* ← 開発
 
 ### コア機能
 
-- ✅ Markdown/MDX記事の静的生成 (SSG)
-- ✅ タグベースの記事分類・フィルタリング
-- ✅ レスポンシブデザイン
-- ✅ シンタックスハイライト (rehype-highlight)
-- ✅ 読了時間の自動計算
-- ✅ RSS フィード生成
+- Markdown/MDX記事の静的生成 (SSG)
+- タグベースの記事分類・フィルタリング
+- レスポンシブデザイン
+- シンタックスハイライト (rehype-highlight)
+- 読了時間の自動計算
+- RSS フィード生成
 
 ### パフォーマンス最適化
 
-- ✅ Next.js 16の静的生成 (Build時のレンダリング)
-- ✅ 画像最適化 (next/image)
-- ✅ コードスプリッティング
-- ✅ キャッシュ戦略の実装
+- Next.js 16の静的生成 (Build時のレンダリング)
+- 画像最適化 (next/image)
+- コードスプリッティング
+- キャッシュ戦略の実装
 
 ---
 
