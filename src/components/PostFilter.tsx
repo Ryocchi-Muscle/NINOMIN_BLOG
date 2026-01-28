@@ -80,6 +80,11 @@ const categoryCardStyles: Record<
     tag: "text-purple-600 dark:text-purple-400",
     hover: "hover:border-purple-400 dark:hover:border-purple-600",
   },
+  annual: {
+    border: "border-amber-200 dark:border-amber-800",
+    tag: "text-amber-600 dark:text-amber-400",
+    hover: "hover:border-amber-400 dark:hover:border-amber-600",
+  },
 };
 
 // カテゴリーラベル
@@ -87,6 +92,7 @@ const categoryLabels: Record<PostCategory, string> = {
   tech: "Tech",
   weekly: "Weekly",
   monthly: "Monthly",
+  annual: "Annual",
 };
 
 export default function PostFilter({

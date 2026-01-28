@@ -1,5 +1,5 @@
 export type PostType = "internal" | "external";
-export type PostCategory = "weekly" | "monthly" | "tech";
+export type PostCategory = "weekly" | "monthly" | "tech" | "annual";
 
 export interface Post {
   slug: string;
