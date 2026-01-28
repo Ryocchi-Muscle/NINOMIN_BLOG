@@ -9,6 +9,7 @@ import {
   RefreshCw,
   ArrowRight,
   Clock,
+  Star,
 } from "lucide-react";
 import type { PostMeta, PostCategory } from "@/types/post";
 import Link from "next/link";
@@ -57,6 +58,13 @@ const tabs: {
     icon: RefreshCw,
     gradient: "from-purple-500 to-pink-500",
     activeGradient: "from-purple-500 to-pink-600",
+  },
+  {
+    id: "annual",
+    label: "Annual",
+    icon: Star,
+    gradient: "from-amber-500 to-orange-500",
+    activeGradient: "from-amber-500 to-orange-600",
   },
 ];
 
@@ -116,6 +124,7 @@ export default function PostFilter({
       tech: posts.filter((p) => p.category === "tech").length,
       weekly: posts.filter((p) => p.category === "weekly").length,
       monthly: posts.filter((p) => p.category === "monthly").length,
+      annual: posts.filter((p) => p.category === "annual").length,
     };
     return counts;
   }, [posts]);
