@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Calendar, Code, RefreshCw, ArrowRight } from "lucide-react";
+import { Calendar, Code, RefreshCw, ArrowRight, Star } from "lucide-react";
 import type { PostMeta, PostCategory } from "@/types/post";
 import Link from "next/link";
 import { formatDate } from "@/lib/utils";
@@ -51,6 +51,19 @@ const categoryConfig = {
       "dark:bg-gradient-to-br dark:from-slate-900 dark:via-slate-900 dark:to-emerald-950/30",
     cardBorder: "hover:border-emerald-300 dark:hover:border-emerald-700",
     tagColor: "text-emerald-600 dark:text-emerald-400",
+  },
+  annual: {
+    title: "Annual Review",
+    subtitle: "年次振り返り",
+    description: "1年間の総括と成長の記録",
+    icon: Star,
+    accentColor: "amber",
+    gradient: "from-amber-500 via-amber-600 to-orange-600",
+    lightBg: "bg-gradient-to-br from-amber-50/50 via-white to-orange-50/50",
+    darkBg:
+      "dark:bg-gradient-to-br dark:from-slate-900 dark:via-slate-900 dark:to-amber-950/30",
+    cardBorder: "hover:border-amber-300 dark:hover:border-amber-700",
+    tagColor: "text-amber-600 dark:text-amber-400",
   },
 };
 
