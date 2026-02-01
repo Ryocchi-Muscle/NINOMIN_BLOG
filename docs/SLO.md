@@ -39,7 +39,7 @@
 
 2. Latency (任意・取れれば)
 
-- SLI: p95 응答時間
+- SLI: p95 応答時間
 - Measurement: 取得できる範囲で（将来追加）
 
 ## SLO (Service Level Objectives)
