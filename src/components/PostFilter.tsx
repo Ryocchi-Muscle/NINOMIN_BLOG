@@ -4,7 +4,6 @@ import { useState, useMemo } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import {
   Layers,
-  Code,
   Calendar,
   RefreshCw,
   ArrowRight,
@@ -39,13 +38,6 @@ const tabs: {
     activeGradient: "from-slate-600 to-slate-800",
   },
   {
-    id: "tech",
-    label: "Tech",
-    icon: Code,
-    gradient: "from-emerald-500 to-teal-500",
-    activeGradient: "from-emerald-500 to-teal-600",
-  },
-  {
     id: "weekly",
     label: "Weekly",
     icon: Calendar,
@@ -73,11 +65,6 @@ const categoryCardStyles: Record<
   PostCategory,
   { border: string; tag: string; hover: string }
 > = {
-  tech: {
-    border: "border-emerald-200 dark:border-emerald-800",
-    tag: "text-emerald-600 dark:text-emerald-400",
-    hover: "hover:border-emerald-400 dark:hover:border-emerald-600",
-  },
   weekly: {
     border: "border-blue-200 dark:border-blue-800",
     tag: "text-blue-600 dark:text-blue-400",
@@ -97,7 +84,6 @@ const categoryCardStyles: Record<
 
 // カテゴリーラベル
 const categoryLabels: Record<PostCategory, string> = {
-  tech: "Tech",
   weekly: "Weekly",
   monthly: "Monthly",
   annual: "Annual",
@@ -121,7 +107,6 @@ export default function PostFilter({
   const categoryCounts = useMemo(() => {
     const counts: Record<TabCategory, number> = {
       all: posts.length,
-      tech: posts.filter((p) => p.category === "tech").length,
       weekly: posts.filter((p) => p.category === "weekly").length,
       monthly: posts.filter((p) => p.category === "monthly").length,
       annual: posts.filter((p) => p.category === "annual").length,
@@ -144,7 +129,7 @@ export default function PostFilter({
             Articles
           </h2>
           <p className="text-slate-600 dark:text-slate-400 max-w-2xl mx-auto">
-            技術的なアウトプットや振り返りログをカテゴリ別に閲覧できます
+            日々の振り返りログをカテゴリ別に閲覧できます
           </p>
         </motion.div>
 
@@ -219,7 +204,7 @@ export default function PostFilter({
               filteredPosts.map((post, index) => {
                 const cardStyle = post.category
                   ? categoryCardStyles[post.category]
-                  : categoryCardStyles.tech;
+                  : categoryCardStyles.weekly;
 
                 return (
                   <motion.article

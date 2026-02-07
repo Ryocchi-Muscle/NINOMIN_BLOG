@@ -102,11 +102,6 @@ export function getMonthlyPosts(): PostMeta[] {
   return getPostsByCategory("monthly");
 }
 
-// 技術記事を取得
-export function getTechPosts(): PostMeta[] {
-  return getPostsByCategory("tech");
-}
-
 // 全記事から重複のないタグ一覧を取得する関数
 export function getAllTags(): string[] {
   const posts = getAllPosts();

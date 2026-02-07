@@ -61,9 +61,9 @@ export default function HeroSection() {
         transition={{ delay: 0.6, duration: 0.6 }}
         className="relative z-10 text-lg md:text-xl text-slate-600 dark:text-slate-400 mb-8 text-center max-w-2xl leading-relaxed"
       >
-        Python・TypeScriptを中心にWeb開発を行っています。
-        日々の学びや技術的な発見をここで発信していきます。
+        日々の振り返りを記録しています。
         <br />
+        技術記事はZennで発信中。
       </motion.p>
 
       <motion.div
