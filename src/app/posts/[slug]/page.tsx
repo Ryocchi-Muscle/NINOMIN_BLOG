@@ -1,11 +1,12 @@
 import { getPostBySlug, getAllPosts, formatDate } from "@/lib/posts";
 import { notFound, redirect } from "next/navigation";
 import { Badge } from "@/components/ui/badge";
-import { Calendar, Clock } from "lucide-react";
+import { Calendar, Clock, ArrowLeft } from "lucide-react";
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
 import { Metadata } from "next";
 import { CodeBlock } from "@/components/CodeBlock";
+import Link from "next/link";
 
 type Props = {
   params: Promise<{ slug: string }>;
@@ -113,6 +114,15 @@ export default async function PostPage({ params }: Props) {
       )}
 
       <article className="max-w-4xl mx-auto px-4 py-12">
+        {/* ホームに戻るリンク */}
+        <Link
+          href="/"
+          className="inline-flex items-center justify-center w-10 h-10 rounded-full text-slate-600 dark:text-slate-400 hover:text-blue-600 dark:hover:text-blue-400 hover:bg-slate-100 dark:hover:bg-slate-800 transition-all mb-8"
+          aria-label="ホームに戻る"
+        >
+          <ArrowLeft className="w-5 h-5" />
+        </Link>
+
         {/* ヘッダー */}
         <header className="mb-8">
           <h1 className="text-4xl md:text-5xl font-bold text-slate-900 dark:text-white mb-4">
@@ -248,6 +258,17 @@ export default async function PostPage({ params }: Props) {
           >
             {post.content}
           </ReactMarkdown>
+        </div>
+
+        {/* ホームに戻るリンク（下部） */}
+        <div className="mt-12 pt-8 border-t border-slate-200 dark:border-slate-700">
+          <Link
+            href="/"
+            className="inline-flex items-center justify-center w-10 h-10 rounded-full text-slate-600 dark:text-slate-400 hover:text-blue-600 dark:hover:text-blue-400 hover:bg-slate-100 dark:hover:bg-slate-800 transition-all"
+            aria-label="ホームに戻る"
+          >
+            <ArrowLeft className="w-5 h-5" />
+          </Link>
         </div>
       </article>
     </div>
